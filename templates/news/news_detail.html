@@ -1,0 +1,9 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}{{idnews.title}}{% endblock title %}
+{% block content %}
+    <h1>{{idnews.title}}</h1>
+    <p><b>{{idnews.publish_time}}</b></p>
+    <img src="{{idnews.image.url}}" alt="image">
+    <p>{{idnews.body}}</p>
+{% endblock content %}

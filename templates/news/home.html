@@ -1,0 +1,197 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Bosh sahifa {% endblock title %}
+{% block content %}
+  <section id="sliderSection">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="slick_slider">
+          {% for yanglik in news %}
+            <div class="single_iteam"> <a href="{{yanglik.get_absolute_url}}"> <img src="{{yanglik.image.url}}" alt=""></a>
+            <div class="slider_article">
+              <h2><a class="slider_tittle" href="{{yanglik.get_absolute_url}}">{{yanglik.title | truncatewords:15 }}</a></h2>
+              <p>{{yanglik.body | truncatewords:10 }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="latest_post">
+          <h2><span>Oxirgi yangliklar</span></h2>
+          <div class="latest_post_container">
+            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
+            <ul class="latest_postnav">
+              {% for yanglik in latest_news %}
+              <li>
+                <div class="media"> <a href="{{yanglik.get_absolute_url}}" class="media-left"> <img alt="" src="{{yanglik.image.url}}"> </a>
+                  <div class="media-body"> <a href="{{yanglik.get_absolute_url}}" class="catg_title"> {{yanglik.title | truncatewords:7 }}</a> </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contentSection">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="left_content">
+          <div class="single_post_content">
+            <h2><span>O'zbekiston</span></h2>
+            <div class="single_post_content_left">
+              <ul class="business_catgnav  wow fadeInDown">
+                    {% for uz_n in uz_news %}
+                        {% if forloop.first %}
+                        <li>
+                             <figure class="bsbig_fig"> <a href="{{uz_n.get_absolute_url}}" class="featured_img"> <img alt="" src="{{uz_n.image.url}}"> <span class="overlay"></span> </a>
+                             <figcaption> <a href="{{uz_n.get_absolute_url}}">{{uz_n.title | truncatewords:10}}</a> </figcaption>
+                             <p>{{uz_n.body | truncatewords:10}}</p>
+                            </figure>
+                         </li>
+                        {% endif %}
+                    {% endfor %}
+              </ul>
+            </div>
+            <div class="single_post_content_right">
+              <ul class="spost_nav">
+                {% for uz_n in uz_news %}
+                    {% if forloop.counter > 1 %}
+                    <li>
+                       <div class="media wow fadeInDown"> <a href="{{uz_n.get_absolute_url}}" class="media-left"> <img alt="" src="{{uz_n.image.url}}"> </a>
+                          <div class="media-body"> <a href="{{uz_n.get_absolute_url}}" class="catg_title"> {{uz_n.title | truncatewords:10}}</a> </div>
+                      </div>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="fashion_technology_area">
+            <div class="fashion">
+              <div class="single_post_content">
+                <h2><span>Sport</span></h2>
+                <ul class="business_catgnav wow fadeInDown">
+                  {% for one_news in sport_one %}
+                      <li>
+                        <figure class="bsbig_fig"> <a href="{{one_news.get_absolute_url}}" class="featured_img"> <img alt="" src="{{one_news.image.url}}"> <span class="overlay"></span> </a>
+                          <figcaption> <a href="{{one_news.get_absolute_url}}">{{one_news.title | truncatewords:70}}</a> </figcaption>
+                          <p>{{one_news.body | truncatewords:15}}</p>
+                        </figure>
+                  </li>
+                  {% endfor %}
+                </ul>
+                <ul class="spost_nav">
+                 {% for sport_n in sport_news %}
+                       <li>
+                    <div class="media wow fadeInDown"> <a href="{{sport_n.get_absolute_url}}" class="media-left"> <img alt="" src="{{sport_n.image.url}}"> </a>
+                      <div class="media-body"> <a href="{{sport_n.get_absolute_url}}" class="catg_title"> {{sport_n.title | truncatewords:10}}</a> </div>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="technology">
+              <div class="single_post_content">
+                <h2><span>Texnologiya</span></h2>
+
+                <ul class="spost_nav">
+                 {% for tech in tech_news %}
+                     <li>
+                    <div class="media wow fadeInDown"> <a href="{{tech.get_absolute_url}}" class="media-left"> <img alt="" src="{{tech.image.url}}"> </a>
+                      <div class="media-body"> <a href="{{tech.get_absolute_url}}" class="catg_title">{{tech.title | truncatewords:7}}</a> </div>
+                    </div>
+                  </li>
+                  {% endfor%}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="single_post_content">
+            <h2><span>Fotografiya</span></h2>
+            <ul class="photograph_nav  wow fadeInDown">
+              {% for foto in fotografiya %}
+                  <li>
+                <div class="photo_grid">
+                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="{{foto.get_absolute_url}}" title="Photography Ttile 1"> <img src="{{foto.image.url}}" alt=""/></a> </figure>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <aside class="right_content">
+          <div class="single_sidebar">
+            <h2><span>Ommabop yangliklar</span></h2>
+            <ul class="spost_nav">
+              {% for yanglik in latest_news %}
+              <li>
+                <div class="media"> <a href="{{yanglik.get_absolute_url}}" class="media-left"> <img alt="" src="{{yanglik.image.url}}"> </a>
+                  <div class="media-body"> <a href="{{yanglik.get_absolute_url}}" class="catg_title"> {{yanglik.title | truncatewords:7 }}</a> </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="single_sidebar">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Kategoriya</a></li>
+              <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a></li>
+              <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Izohlar</a></li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="category">
+                <ul>
+                  {% for category in categories %}
+                  <li class="cat-item"><a href="/">{{category.name}}</a></li>
+                   {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="single_sidebar wow fadeInDown">
+            <h2><span>Hamkor</span></h2>
+            <a class="sideAdd" href="#"><img src="{% static 'images/add_img.jpg' %}" alt=""></a> </div>
+          <div class="single_sidebar wow fadeInDown">
+            <h2><span>Kategoriyalar arxivi</span></h2>
+            <select class="catgArchive">
+              <option>Kategoriyani tanlang</option>
+              {% for category in categories %}
+                <option>{{category.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="single_sidebar wow fadeInDown">
+            <h2><span>Havolalar</span></h2>
+            <ul>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Sign up</a></li>
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Life &amp; Style</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock content %}
+{% block javascript %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/jquery.li-scroller.1.0.js' %}"></script>
+<script src="{% static 'js/jquery.newsTicker.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/html5shiv.min.js' %}"></script>
+<script src="{% static 'js/respond.min.js' %}"></script>
+{% endblock javascript %}

@@ -1,0 +1,21 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Sport xabarlari{% endblock title %}
+<head>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link href="{% static 'bootstrap/js/bootstrap.min.js' %}">
+</head>
+{% block content %}
+    {% for yanglik in sport_news %}
+<div class="container" style="width:100%;margin:10px auto;">
+    <div class="card" style="width: 80%;margin:20px auto;" height="30%">
+        <img src="{{yanglik.image.url}}" alt="" width="60%" style="margin:2px auto;">
+        <div>
+             <h5 class="card-title"><i><b>{{yanglik.title}}</b></i></h5>
+             <p>{{yanglik.body | truncatewords:30}}</p>
+             <a href="{% url 'news_detail' yanglik.pk %}" class="btn btn-primary">Batafsil</a>
+        </div>
+    </div>
+</div>
+     {% endfor %}
+{% endblock content %}
